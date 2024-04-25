@@ -22,17 +22,12 @@ public class Intervention {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     	private long idIntervention;
-	
-	
 
 	    @Column(name = "INTE_DT_CLOTURE")
 	    private Date dateCloture;
 
 	    @Column(name = "INTE_DESCRIPTION_PANNE")
 	    private String descriptionPanne;
-
-	  
-	    
 	    
 	    @Column(name = "INTE_DT_REALISATION")
 	    private Date dtRealisation;
@@ -49,12 +44,9 @@ public class Intervention {
 	    @Column(name = "INTE_OBSERVATION", nullable = false,  columnDefinition = "VARCHAR(30)")
 	    private String interventionObservation;
 	    
-	    
-	  
+	   
 	    private double interMtHebergement;
 	    private double interMtDeplacement;
-	    
-	   
 	    
 	    private Long difficulté;
 	 
@@ -64,7 +56,12 @@ public class Intervention {
 	    
 	    @ManyToOne
 	    private InterventionType interventionType;
-
 	    
+	 
+
+
+@ManyToOne
+private Technicien technicien;
+
 
 }

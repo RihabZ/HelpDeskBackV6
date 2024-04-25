@@ -64,6 +64,10 @@ public List<Demandeur> findByClientCodeClient(long codeClient)
 }
 
 
+@Override
+public Demandeur getDemandeurByUsername(String username) {
+    return demandeurRepository.findByUserUsername(username);
+}
 
 
 

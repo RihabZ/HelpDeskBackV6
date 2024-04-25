@@ -42,7 +42,7 @@ public List<TicketDTO> getAllTickets() {
 
 	
 @RequestMapping(value="/getByCode/{interCode}",method = RequestMethod.GET)
-public TicketDTO getTicketionById(@PathVariable("interCode") UUID interCode) {
+public TicketDTO getTicketionById(@PathVariable("interCode") String interCode) {
 	return ticketService.getTicket(interCode);
  }
 
@@ -66,7 +66,7 @@ public TicketDTO updateTicket(@RequestBody TicketDTO ticketDTO) {
 @PreAuthorize("hasAuthority('CLIENT')")
 @RequestMapping(value="/deleteTicket/{interCode}",method = RequestMethod.DELETE)
 
-public void deleteTicket(@PathVariable("interCode") UUID interCode)
+public void deleteTicket(@PathVariable("interCode") String interCode)
 {
 	ticketService.deleteTicketByCode(interCode);
 }

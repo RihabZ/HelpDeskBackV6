@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rihab.interventions.entities.Intervention;
 import com.rihab.interventions.entities.InterventionType;
+
 import com.rihab.interventions.service.InterventionTypeService;
 
 @RestController
@@ -68,7 +70,6 @@ public InterventionType updateInterventionType(@RequestBody InterventionType typ
         return interventionTypeService.findByLibelleTypeContains(libelleType);
     }
 
-	
 	
 
 	

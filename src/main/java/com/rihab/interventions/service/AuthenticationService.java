@@ -392,10 +392,27 @@ public class AuthenticationService {
     
     
     
-    
-    
-    
-    
-    
+    public List<UserDTO> getAllManagers() {
+        List<User> managers = repository.findByRole(Role.MANAGER); // Utilisation de l'énumération Role.MANAGER pour rechercher les utilisateurs avec le rôle de manager
+        List<UserDTO> managerDTOs = new ArrayList<>();
+
+        for (User manager : managers) {
+            UserDTO managerDTO = UserDTO.builder()
+                .id(manager.getId())
+                .nom(manager.getNom())
+                .prenom(manager.getPrenom())
+                .email(manager.getEmail())
+                .tel(manager.getTel())
+                .age(manager.getAge())
+                .role(manager.getRole())
+                .sexe(manager.getSexe())
+                .dateEmbauche(manager.getDateEmbauche())
+                .build();
+            managerDTOs.add(managerDTO);
+        }
+        return managerDTOs;
+    }
+
+
     
 }

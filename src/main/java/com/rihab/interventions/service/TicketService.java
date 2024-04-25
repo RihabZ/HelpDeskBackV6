@@ -13,8 +13,8 @@ public interface TicketService {
 	TicketDTO saveTicket(TicketDTO inter) ;
 	TicketDTO updateTicket(TicketDTO inter);
 void deleteTicket(Ticket inter);
- void deleteTicketByCode(UUID code);
- TicketDTO getTicket(UUID code);
+ void deleteTicketByCode(String code);
+ TicketDTO getTicket(String code);
 List<TicketDTO> getAllTickets();
 
 List<Ticket> findByInterDesignation(String desing);

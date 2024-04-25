@@ -4,9 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.rihab.interventions.dto.InterventionDTO;
+import com.rihab.interventions.entities.Equipement;
 import com.rihab.interventions.entities.Intervention;
+import com.rihab.interventions.entities.Ticket;
 import com.rihab.interventions.repos.InterventionRepository;
+import com.rihab.interventions.repos.TicketRepository;
 
 @Service
 public class InterventionServiceImpl implements InterventionService {
@@ -60,5 +67,22 @@ public List<Intervention> findByInterventionTypeCodeType(String code)
 return interventionRepository.findByInterventionTypeCodeType( code);
 
 }
+
+@Override
+public Intervention findByTicketInterCode(String interCode) {
+	return interventionRepository.findByTicketInterCode(interCode);
+	
+}
+
+
+@Override
+public List<Intervention> findByTechnicienCodeTechnicien(long codeTechnicien)
+{
+	return interventionRepository.findByTechnicienCodeTechnicien( codeTechnicien);
+			
+}
+
+
+
 
 }

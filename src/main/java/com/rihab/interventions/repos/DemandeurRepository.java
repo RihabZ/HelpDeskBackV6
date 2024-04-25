@@ -13,5 +13,7 @@ public interface DemandeurRepository  extends JpaRepository<Demandeur, Long> {
 
 	 
 	 List<Demandeur> findByClientCodeClient(long codeClient);
+
+	Demandeur findByUserUsername(String username);
 	
 }

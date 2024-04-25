@@ -23,7 +23,7 @@ import lombok.Setter;
 public class TicketDTO {
 	
 	
-	private UUID interCode ;
+	private String interCode ;
     
    private String interDesignation;
 
@@ -52,7 +52,7 @@ public class TicketDTO {
    
    private String machineArret;
 
-  
+   private Date dateArret;
    private Long dureeArret;
 
   

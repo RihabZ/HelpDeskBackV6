@@ -2,6 +2,7 @@ package com.rihab.interventions.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,10 +29,41 @@ import lombok.Setter;
 @Builder
 @Entity
 public class Ticket {
+	/*
     @Id
     
     @Column(columnDefinition = "BINARY(8)")
 	private UUID interCode = UUID.randomUUID();
+    
+    */
+    
+    
+    @Id
+    @Column(length = 10)
+    private String interCode;
+
+    @PrePersist //pour générer la valeur de la clé avant la persistance de l'entité
+    public void generateInterCode() {
+        this.interCode = "I24-" + generateShortUUID();
+    }
+    private String generateShortUUID() {
+        Random random = new Random();
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder uuid = new StringBuilder();
+        
+        for (int i = 0; i < 4; i++) { // Générer une chaîne de 6 caractères alphanumériques aléatoires
+            uuid.append(characters.charAt(random.nextInt(characters.length())));
+        }
+        
+        return uuid.toString();
+    }
+
+
+
+    
+    
+    
+    
      @Column(name = "INTE_DESIGNATION", columnDefinition = "VARCHAR(50)", nullable = false)
     private String interDesignation;
 
@@ -59,6 +92,10 @@ public class Ticket {
     @Column(name = "INTE_PRIORITE", columnDefinition = "VARCHAR(10)")
     private String interPriorite;
 
+    @Column(name = "INTE_DATE_ARRET")
+    private Date dateArret;
+
+   
     @Column(name = "INTE_MACHINE_ARRET", columnDefinition = "VARCHAR(3) DEFAULT 'Non'", nullable = false)
     private String machineArret;
 

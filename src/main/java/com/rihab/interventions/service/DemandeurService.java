@@ -17,6 +17,7 @@ List<Demandeur> getAllDemandeurs();
 
 
 List<Demandeur> findByClientCodeClient(long codeClient);
+Demandeur getDemandeurByUsername(String username);
 
 
 }

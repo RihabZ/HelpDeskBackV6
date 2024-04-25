@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rihab.interventions.entities.Departement;
 import com.rihab.interventions.entities.Technicien;
 
 import com.rihab.interventions.repos.TechnicienRepository;
@@ -52,6 +53,13 @@ return technicienRepository.findById(code).get();
 @Override
 public List<Technicien> getAllTechniciens() {
 return technicienRepository.findAll();
+}
+
+@Override
+public List<Technicien> findByDepartementCodeDepart(long codeDepart)
+{
+	return technicienRepository.findByDepartementCodeDepart( codeDepart);
+			
 }
 
 

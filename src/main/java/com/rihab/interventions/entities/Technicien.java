@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,5 +53,11 @@ private User user;
 
 @ManyToOne
 private Departement departement;
+
+@JsonIgnore
+@OneToMany(mappedBy = "technicien")
+private List<Intervention> interventions;
+
+
 
 }

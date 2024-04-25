@@ -3,6 +3,7 @@ package com.rihab.interventions.restControllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rihab.interventions.dto.InterventionDTO;
+import com.rihab.interventions.entities.Equipement;
 import com.rihab.interventions.entities.Intervention;
 import com.rihab.interventions.service.InterventionService;
 
@@ -23,7 +26,7 @@ public class InterventionRestController {
 	@Autowired
 	InterventionService interventionService;
 
-
+	@PreAuthorize("hasAuthority('MANAGER')")
 @RequestMapping(path="allInterventions",method = RequestMethod.GET)
 public List<Intervention> getAllInterventions() {
 	return interventionService.getAllInterventions();
@@ -36,19 +39,19 @@ public Intervention getInterventionById(@PathVariable("idIntervention") long idI
  }
 
 //autorisation au admin seulement cette methode
-//@PreAuthorize("hasAuthority('CLIENT')")
+@PreAuthorize("hasAuthority('MANAGER')")
 @RequestMapping(path="/addInter",method = RequestMethod.POST)
 public Intervention createIntervention(@RequestBody Intervention intervention) {
 	return interventionService.saveIntervention(intervention);
 }
 
-
+@PreAuthorize("hasAuthority('MANAGER')")
 @RequestMapping(path="/updateInter",method = RequestMethod.PUT)
 public Intervention updateIntervention(@RequestBody Intervention intervention) {
 		return interventionService.updateIntervention(intervention);
 }
 
-//@PreAuthorize("hasAuthority('CLIENT')")
+@PreAuthorize("hasAuthority('MANAGER')")
 @RequestMapping(value="/deleteInter/{idIntervention}",method = RequestMethod.DELETE)
 
 public void deleteIntervention(@PathVariable("idIntervention") long idIntervention)
@@ -66,6 +69,16 @@ public List<Intervention> getInterventionsByInterventionTypeCode(@PathVariable("
 
 
 
+@RequestMapping(value="/getbyTicket/{interCode}",method = RequestMethod.GET)
+public Intervention getByTicketInterCode(@PathVariable("interCode") String interCode) {
+	return interventionService.findByTicketInterCode(interCode);
+ }
+
+@PreAuthorize("hasAuthority('MANAGER')")
+@RequestMapping(value="/IntervsTech/{codeTechicien}",method = RequestMethod.GET)
+public List<Intervention> getInterventionsByTechnicienCodeTechnicien(@PathVariable("codeTechicien") long codeTechicien) {
+		return interventionService.findByTechnicienCodeTechnicien(codeTechicien);
+}
 
 
 }

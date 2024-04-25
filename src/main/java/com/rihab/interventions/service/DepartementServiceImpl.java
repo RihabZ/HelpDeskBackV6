@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rihab.interventions.entities.Departement;
+import com.rihab.interventions.entities.Equipement;
 import com.rihab.interventions.entities.Famille;
 import com.rihab.interventions.repos.DepartementRepository;
 import com.rihab.interventions.repos.EquipementFamilleRepository;
@@ -53,6 +54,8 @@ return departementRepository.findById(id).get();
 public List<Departement> getAllDepartements() {
 return departementRepository.findAll();
 }
+
+
 
 
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rihab.interventions.entities.Equipement;
 import com.rihab.interventions.entities.Technicien;
 import com.rihab.interventions.service.TechnicienService;
 
@@ -57,6 +58,12 @@ public void deleteTechnicien(@PathVariable("codeTechnicien") long codeTechnicien
 	technicienService.deleteTechnicienByCode(codeTechnicien);
 }
 
+
+@PreAuthorize("hasAuthority('MANAGER')")
+@RequestMapping(value="/getTechDepart/{codeDepart}",method = RequestMethod.GET)
+public List<Technicien> getTechniciensByDepartementCodeDepart(@PathVariable("codeDepart") long codeDepart) {
+		return technicienService.findByDepartementCodeDepart(codeDepart);
+}
 }
 
 
